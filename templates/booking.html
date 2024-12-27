@@ -16,26 +16,13 @@
                 </div>
                 <!-- Additional Images -->
                 <div class="grid grid-cols-4 gap-4">
+                {% for image in activity.images.all %}
                     <img 
-                        src="https://source.unsplash.com/400x400/?mountain,landscape1" 
-                        alt="Landscape 1" 
+                        src="{{ image.image.url }}" 
+                        alt="{{ image.description }}" 
                         class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-75 transition"
                     >
-                    <img 
-                        src="https://source.unsplash.com/400x400/?mountain,landscape2" 
-                        alt="Landscape 2" 
-                        class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-75 transition"
-                    >
-                    <img 
-                        src="https://source.unsplash.com/400x400/?mountain,landscape3" 
-                        alt="Landscape 3" 
-                        class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-75 transition"
-                    >
-                    <img 
-                        src="https://source.unsplash.com/400x400/?mountain,landscape4" 
-                        alt="Landscape 4" 
-                        class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-75 transition"
-                    >
+                    {% endfor %}
                 </div>
             </div>
 
@@ -60,7 +47,7 @@
                             {{activity.Where}}
                         </div>
                         <div class="text-3xl font-bold text-teal-600">
-                            $199 <span class="text-sm text-gray-500">/ person</span>
+                            $199 <span class="text-sm text-gray-500">/ {{activity.places}} person</span>
                         </div>
                     </div>
 

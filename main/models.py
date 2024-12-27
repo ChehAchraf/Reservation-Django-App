@@ -1,6 +1,13 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 
+class ActivityImage(models.Model):
+    activity = models.ForeignKey('Activities', related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='activities_images/')  # Upload path for images
+    description = models.CharField(max_length=255, blank=True, null=True) 
+    def __str__(self):
+        return f"Image for {self.activity.title}"
+    
 class ActivityCategory(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
