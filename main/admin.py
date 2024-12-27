@@ -1,4 +1,15 @@
 from django.contrib import admin
-from .models import Activities , ActivityCategory
+from .models import Activities , ActivityCategory , Highlight
 admin.site.register(Activities)
 admin.site.register(ActivityCategory)
+
+class HighlightInline(admin.TabularInline):  
+    model = Activities.highlights.through  
+    extra = 1  
+
+class ActivitiesAdmin(admin.ModelAdmin):
+    inlines = [HighlightInline]  
+    list_display = ['title', 'description']  
+
+
+admin.site.register(Highlight)

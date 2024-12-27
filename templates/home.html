@@ -101,39 +101,41 @@
         <!-- Activities Grid -->
         <div class="grid md:grid-cols-3 gap-6">
             <!-- Activity Card Template -->
+            {% for x in  activity%}
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition hover:scale-105">
                 <div class="relative">
                     <img 
-                        src="https://source.unsplash.com/800x600/?travel,adventure" 
+                        src="{{x.image.url}}" 
                         alt="Adventure Activity" 
                         class="w-full h-64 object-cover"
                     >
                     <div class="absolute top-4 right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-sm">
-                        Adventure
+                        {{x.category}}
                     </div>
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                        Mountain Hiking Expedition
+                        {{x.title}}
                     </h3>
                     <div class="flex items-center text-gray-600 dark:text-gray-300 mb-4">
                         <svg class="w-5 h-5 mr-2 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                         </svg>
-                        Swiss Alps, Switzerland
+                        {{x.Where}}
                     </div>
                     <div class="flex justify-between items-center">
                         <div class="text-2xl font-bold text-teal-600">
-                            $199 <span class="text-sm text-gray-500">/ person</span>
+                            {{x.price}}$ <span class="text-sm text-gray-500">/ {{x.places}} person</span>
                         </div>
-                        <button class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">
+                        <a href="{% url 'book_activity' x.id %}" class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">
                             Book Now
-                        </button>
+                        </a>
+                        
                     </div>
                 </div>
             </div>
-
-            <!-- More cards with different Unsplash queries -->
+            {% endfor %}
+            {% comment %} <!-- More cards with different Unsplash queries -->
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition hover:scale-105">
                 <div class="relative">
                     <img 
@@ -196,7 +198,7 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> {% endcomment %}
         </div>
 
         <!-- View More Button -->
